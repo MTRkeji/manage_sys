@@ -1,0 +1,15 @@
+<!--学生登录-->
+<html>
+<head>
+
+</head>
+<body>
+  <form action="{% url 'student:stu_login' %}" method="post" >
+    {% csrf_token %}
+    <input type='text' name='username' />
+    <input type='password' name='password' />
+      <button name="submit" >登录</button>
+    <input type="hidden" name="next" value="{% url 'student:stu_index' %}" />
+  </form>
+</body>
+</html>

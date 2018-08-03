@@ -1,0 +1,15 @@
+<!--教师登录-->
+<html>
+<head>
+
+</head>
+<body>
+  <form action="{% url 'teacher:tea_login' %}" method="post" >
+    {% csrf_token %}
+    <input type='text' name='username' />
+    <input type='password' name='password' />
+      <button name="submit" >登录</button>
+    <input type="hidden" name="next" value="{% url 'teacher:tea_index' %}" />
+  </form>
+</body>
+</html>
