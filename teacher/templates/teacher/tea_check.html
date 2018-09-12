@@ -1,0 +1,83 @@
+<!--教师审核界面-->
+{% extends 'teacher/tea_base.html' %}
+{% block content %}
+<div class="container">
+	{% if msg %}
+	<div class="alert alert-success" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		{{msg}}
+	</div>
+	{% endif %}
+    <h2>审核界面</h2>
+        <form action="{% url 'teacher:tea_check' %}" method='POST' role="form" class="form-horizontal">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="competition" class="col-sm-2 control-label">请输入竞赛名称：</label>
+                <div class="col-sm-3">
+                    <input type='text' name='competition' id='competition' class="form-control" />
+                </div>
+                <div class="col-sm-2">
+                    <input type='submit' name="select" value='查询' class="btn btn-info" />
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="button" value="全选" class="btn btn-default" onclick="checkAll()" />
+                <input type="button" value="取消全选" class="btn btn-default" onclick="cancelCheckAll()" />
+                <input type="submit" name="check" value="通过" class="btn btn-default" />
+                <input type="submit" name="delete" value="删除" class="btn btn-default" />
+            </div>
+            <table class='table table-striped table-hover'>
+                <thead>
+                    <tr>
+                        <th>标记</th>
+                        <th>学号</th>
+                        <th>姓名</th>
+                        <th>竞赛</th>
+                        <th>奖项</th>
+                        <th>附件</th>
+                        <th>状态</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in entrys %}
+                    <tr>
+                        <td><input type="checkbox" name="ids" value="{{ entry.id }}" /></td>
+                        <td>{{ entry.xuehao }}</td>
+                        <td>{{ entry.student }}</td>
+                        <td>{{ entry.competition }}</td>
+                        <td>{{ entry.grade }}</td>
+                        <td>
+                            {% if entry.attachment %}
+                            <a href="{{MEDIA_URL}}{{entry.attachment}}">查看附件</a>
+                            {% else %}
+                            无附件
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if entry.shenhe %}
+                            <text>已通过</text>
+                            {% else %}
+                            <text style="color:red">审核中</text>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </form>
+</div>
+<script>
+    function checkAll(){
+        var one = document.getElementsByName('ids');
+        for(var j = 0;j<one.length;j++){
+            one[j].checked = true;
+        }
+    }
+    function cancelCheckAll(){
+        var two = document.getElementsByName('ids');
+        for(var i = 0;i<two.length;i++){
+            two[i].checked = false;
+        }
+    }
+</script>
+{% endblock content %}

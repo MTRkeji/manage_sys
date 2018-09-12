@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block navbar-one %}
+<li role="presentation"><a href="{% url 'teacher:tea_index' %}">教师主页</a></li>
+<li role="presentation"><a href="{% url 'teacher:tea_entry' %}">录入信息</a></li>
+<li role="presentation"><a href="{% url 'teacher:tea_query_xuehao' %}">获奖信息查询</a></li>
+<li role="presentation"><a href="{% url 'teacher:tea_check' %}">审核系统</a></li>
+{% endblock navbar-one %}
+{% block navbar-two %}
+<li role="presentation"><a href="#">欢迎：{{ name }}</a></li>
+<li role="presentation"><a href="{% url 'teacher:tea_logout' %}">注销</a></li>
+{% endblock navbar-two %}
+{% block content %}
+{% endblock content %}
+

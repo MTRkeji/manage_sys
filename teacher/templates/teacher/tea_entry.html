@@ -1,2 +1,57 @@
 <!--教师录入界面-->
-教师录入界面
+{% extends 'teacher/tea_base.html' %}
+{% block content %}
+<div class="container">
+	{% if msg %}
+	<div class="alert alert-success" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		{{msg}}
+	</div>
+	{% endif %}
+    <h2>信息录入界面</h2>
+    <div class="col-sm-offset-2 col-sm-6">
+        <form action="{% url 'teacher:tea_entry' %}" method='POST' role="form" class="form-horizontal" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="from-group">
+                <label for='xuehao' class="col-sm-2 control-label">学号:</label>
+                <div class="col-sm-10">
+                    <input type='text' name='xuehao' id='xuehao' value='{{ xuehao }}' class="form-control" /><br>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="container col-sm-12">
+                    <label for='competition' class="col-sm-2 control-label">竞赛:</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name='competition' id='competition'>
+                            {% for competition in competitions %}
+                                <option value='{{competition.name}}'>{{competition.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="container col-sm-12">
+                    <label for='grade' class="col-sm-2 control-label">等级:</label>
+                    <div class="col-sm-5">
+                        <select class="form-control" name="grade" id="grade">
+                            {% for grade in grades %}
+                                <option value='{{grade.name}}'>{{grade.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="from-group">
+                <label for='attachment' class="col-sm-2 control-label">附件:</label>
+                <div class="col-sm-10">
+                    <input type='file' name='attachment' id='attachment' /><br>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type='submit' value='提交' class="col-sm-offset-3 btn btn-info" />
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

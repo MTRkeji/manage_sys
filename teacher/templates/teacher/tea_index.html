@@ -1,18 +1,6 @@
-<html>
-<!--教师主页-->
-<head>
-
-</head>
-<body>
-教师主页<br>
-{% if username %}
-欢迎：{{ username }}<br>
-<a href="{% url 'teacher:tea_entry' %}">获奖登记</a><br>
-<a href="{% url 'teacher:tea_query' %}">获奖信息查询</a><br>
-<a href="{% url 'teacher:tea_logout' %}">注销</a><br>
-{% else %}
-<a href="{% url 'teacher:tea_login' %}">登录</a><br>
-{% endif %}
-
-</body>
-</html>
+{% extends 'teacher/tea_base.html' %}
+{% block content %}
+<div class="container">
+    <h2>教师主页</h2>
+</div>
+{% endblock content %}

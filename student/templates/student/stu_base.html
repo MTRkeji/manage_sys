@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block navbar-one %}
+<li role="presentation"><a href="{% url 'student:stu_index' %}">学生主页</a></li>
+<li role="presentation"><a href="{% url 'student:stu_entry' %}">获奖登记</a></li>
+<li role="presentation"><a href="{% url 'student:stu_info' %}">个人获奖信息</a></li>
+{% endblock navbar-one %}
+{% block navbar-two %}
+<li role="presentation"><a href="#" disabled>欢迎：{{ name }}</a></li>
+<li role="presentation"><a href="{% url 'student:stu_logout' %}">注销</a></li>
+{% endblock navbar-two %}
+{% block content %}
+{% endblock content %}

@@ -1,18 +1,9 @@
-<html>
 <!--学生主页-->
-<head>
+{% extends 'student/stu_base.html' %}
+{% load bootstrap3 %}
+{% block content %}
+<div class="container">
+    <h2>学生主页</h2>
+</div>
+{% endblock content %}
 
-</head>
-<body>
-学生主页<br>
-{% if username %}
-欢迎：{{ username }}<br>
-<a href="{% url 'student:stu_entry' %}">获奖登记</a><br>
-<a href="{% url 'student:stu_info' %}">个人获奖信息</a><br>
-<a href="{% url 'student:stu_logout' %}">注销</a><br>
-{% else %}
-<a href="{% url 'student:stu_login' %}">登录</a><br>
-{% endif %}
-
-</body>
-</html>

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <div class="container">
+        <div class="col-sm-offset-2 col-sm-8">
+            <h3 align="center">{{ mymessage.title }}</h3>
+            <p align="center">{{ mymessage.upload_time }}</p>
+            <p>{{ mymessage.content }}</p>
+        </div>
+    </div>
+{% endblock content %}
