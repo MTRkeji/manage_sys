@@ -2,6 +2,7 @@
 """定义student的url模式"""
 from django.conf.urls import url
 from . import views
+app_name = 'student'
 urlpatterns = [
     #学生获奖信息录入界面
     url(r'^stu_entry/$',views.entry,name='stu_entry'),

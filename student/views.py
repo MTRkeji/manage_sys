@@ -1,7 +1,7 @@
 #-*- coding: UTF-8 -*-
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from . import models
@@ -67,7 +67,7 @@ def logout_view(request):
 def index(request):
     cap_form = forms.LoginForm()
     msg = ''
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         student = models.Student.objects.get(user=request.user)
         username = student.name
         context = {'name':username}
@@ -79,7 +79,7 @@ def index(request):
 def login_view(request):
     if request.method == 'POST':
         cap_form = forms.LoginForm(request.POST)
-        if cap_form.is_valid():            
+        if cap_form.is_valid():
             username = request.POST.get('username','')
             password = request.POST.get('password','')
             user = auth.authenticate(username=username,password=password)

@@ -1,8 +1,8 @@
 #-*- coding: UTF-8 -*-
 """定义teacher的url模式"""
 from django.conf.urls import url
-from django.contrib.auth.views import login
 from . import views
+app_name = 'teacher'
 urlpatterns = [
     #教师录入界面
     url(r'^tea_entry/$',views.entry,name='tea_entry'),
